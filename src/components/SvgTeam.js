@@ -4,7 +4,28 @@ import {useGlobalContext} from './Context'
 
 const SvgTeam = () => {
 	const {stats} = useGlobalContext()
+	const adj = new Array(stats[0])
+	const calculateScore = (data, type) =>
+		Object.values(data).reduce(
+			(acc, curr) =>
+				acc +
+				parseInt(curr[`${type}scorepoints`]) +
+				parseInt(curr[`${type}framepointsadj`]),
+			0
+		)
+	const homeScore = calculateScore(adj, 'home')
+	const awayScore = calculateScore(adj, 'away')
 
+	const calculateFrames = (data, type) =>
+		Object.values(data).reduce(
+			(acc, curr) =>
+				25 -
+				(acc +
+					parseInt(curr[`homescore`]) +
+					parseInt(curr[`awayscore`])),
+			0
+		)
+	const framesLeft = calculateFrames(adj)
 	return (
 		<svg
 			xmlns='http://www.w3.org/2000/svg'
