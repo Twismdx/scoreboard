@@ -4,6 +4,28 @@ import { useGlobalContext } from './Context'
 
 const SvgRmu = () => {
     const { stats } = useGlobalContext()
+	const adj = new Array(stats[0])
+	const calculateScore = (data, type) =>
+		Object.values(data).reduce(
+			(acc, curr) =>
+				acc +
+				parseInt(curr[`${type}scorepoints`]) +
+				parseInt(curr[`${type}framepointsadj`]),
+			0
+		)
+	const homeScore = calculateScore(adj, 'home')
+	const awayScore = calculateScore(adj, 'away')
+
+	const calculateFrames = (data, type) =>
+		Object.values(data).reduce(
+			(acc, curr) =>
+				25 -
+				(acc +
+					parseInt(curr[`homescore`]) +
+					parseInt(curr[`awayscore`])),
+			0
+		)
+	const framesLeft = calculateFrames(adj)
 
     return (
         <svg xmlns='http://www.w3.org/2000/svg' xmlnsXlink='http://www.w3.org/1999/xlink' width='80vw' height='55vh' viewBox='0 -240 1260 400'>
@@ -225,7 +247,7 @@ const SvgRmu = () => {
 							fontFamily: 'extraBold',
 							textAlign: 'center',
 						}}>
-						
+						{homeScore}
 					</text>
 					<text
 						textAnchor='start'
@@ -236,7 +258,7 @@ const SvgRmu = () => {
 							fontFamily: 'extraBold',
 							textAlign: 'center',
 						}}>
-						
+						{awayScore}
 					</text>
 					<text
 						textAnchor='middle'
@@ -247,7 +269,7 @@ const SvgRmu = () => {
 							fontFamily: 'semiBold',
 							textAlign: 'center',
 						}}>
-						{/* {!stats[0].away ? <span>&nbsp;&nbsp;&nbsp;&nbsp;{framesLeft}&nbsp;&nbsp;&nbsp;&nbsp;</span> : <div></div>} */}
+						{framesLeft}
 					</text>
 					<text
 						textAnchor='middle'
@@ -258,7 +280,7 @@ const SvgRmu = () => {
 							fontFamily: 'semiBold',
 							textAlign: 'center',
 						}}>
-						{/* Frames Left */}
+						Frames Left
 					</text>
 					<text
 						textAnchor='left'
@@ -268,7 +290,7 @@ const SvgRmu = () => {
 							fontFamily: 'xxBold',
 							textAlign: 'center',
 						}}>
-						{/* {stats[0].venuename} */}
+						{stats[0].venuename}
 					</text>
 					<text
 						textAnchor='right'
@@ -278,7 +300,7 @@ const SvgRmu = () => {
 							fontFamily: 'xxBold',
 							textAlign: 'center',
 						}}>
-						{/* {stats[0].timezone} */}
+						{stats[0].timezone}
 					</text>
 					<text
 						textAnchor='middle'
@@ -353,7 +375,7 @@ const SvgRmu = () => {
 							fontFamily: 'xxBold',
 							textAlign: 'center',
 						}}>
-						{/* {stats[0].compname} */} 2023 BlackBall Nationals
+						{stats[0].compname}
 					</text>
 					<text
 						textAnchor='right'
