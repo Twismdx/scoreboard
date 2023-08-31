@@ -369,7 +369,7 @@ const SvgRmu = () => {
 					</text>
 					<text
 						textAnchor='middle'
-						transform='translate(800.61 82)'
+						transform='translate(850.61 82)'
 						style={{
 							fontSize: 18,
 							fontFamily: 'xxBold',
