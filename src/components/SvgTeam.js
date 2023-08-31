@@ -464,14 +464,7 @@ const SvgTeam = () => {
 							textAlign: 'center',
 						}}
 					>
-						{!stats[0].away ? (
-							<span>
-								&nbsp;&nbsp;&nbsp;&nbsp;{framesLeft}
-								&nbsp;&nbsp;&nbsp;&nbsp;
-							</span>
-						) : (
-							<div></div>
-						)}
+						{framesLeft}
 					</text>
 					<text
 						textAnchor='middle'
@@ -580,7 +573,7 @@ const SvgTeam = () => {
 					</text>
 					<text
 						textAnchor='middle'
-						transform='translate(980.61 82)'
+						transform='translate(800.61 82)'
 						style={{
 							fontSize: 18,
 							fontFamily: 'xxBold',
